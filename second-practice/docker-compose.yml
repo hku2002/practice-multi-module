@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql
+    container_name: mysql
+    hostname: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+    restart: always
+    networks:
+      - multi-module-net
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+
+networks:
+  multi-module-net:
+    name: multi-module-net
