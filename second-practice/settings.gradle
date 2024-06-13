@@ -1,3 +1,4 @@
 rootProject.name = 'second-practice'
 include 'user-domain'
+include 'user-api'
 
