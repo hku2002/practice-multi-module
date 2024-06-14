@@ -20,14 +20,16 @@ public class User extends BaseEntity {
     private String phoneNum;
     private String name;
     private String grade;
+    private int totalOrderCount;
 
     @Builder
-    public User(Long id, String email, String password, String phoneNum, String name, String grade) {
+    public User(Long id, String email, String password, String phoneNum, String name, String grade, int totalOrderCount) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.phoneNum = phoneNum;
         this.name = name;
         this.grade = grade;
+        this.totalOrderCount = totalOrderCount;
     }
 }
