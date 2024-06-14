@@ -32,4 +32,8 @@ public class User extends BaseEntity {
         this.grade = grade;
         this.totalOrderCount = totalOrderCount;
     }
+
+    public void gradeUp() {
+        this.grade = "LV2";
+    }
 }
