@@ -42,9 +42,12 @@ public class GradeUpgradeConfig {
     @Bean
     @JobScope
     public Step userUpgradeStep(JobRepository jobRepository
-            , PlatformTransactionManager transactionManager) {
+            , PlatformTransactionManager transactionManager) throws Exception {
         return new StepBuilder("userUpgradeStep", jobRepository)
-                .chunk(10, transactionManager)
+                .<User, User>chunk(10, transactionManager)
+                .reader(reader())
+                .processor(processor())
+                .writer(writer())
                 .build();
     }
 
@@ -91,7 +94,7 @@ public class GradeUpgradeConfig {
 
         queryProviderFactoryBean.setSelectClause("SELECT id, grade ");
         queryProviderFactoryBean.setFromClause("FROM user ");
-        queryProviderFactoryBean.setWhereClause("WHERE totalOrderCount >= :baseOrderCount AND grade != 'LV2'");
+        queryProviderFactoryBean.setWhereClause("WHERE total_order_count >= :baseOrderCount AND grade != 'LV2'");
 
         Map<String,Order> sortKey = new HashMap<>();
         sortKey.put("id", Order.ASCENDING);
