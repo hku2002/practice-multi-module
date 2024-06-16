@@ -1,2 +1,3 @@
 rootProject.name = 'third-practice-hexagonal'
+include 'product-core'
 
